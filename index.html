@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vishal Salunke | Mechanical Engineer</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px; /* Offset for sticky navbar */
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #0a0f24;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .hero {
+      height: 100vh;
+      background: radial-gradient(circle at center, #03bdf6, #001933);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      animation: fadeIn 2s ease-in-out forwards;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 900;
+      opacity: 0;
+      animation: slideDown 1s ease-out 1s forwards;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      color: #a5d8ff;
+      margin-top: 10px;
+      opacity: 0;
+      animation: fadeText 1s ease-out 2s forwards;
+    }
+
+    @keyframes slideDown {
+      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: translateY(-40px); }
+    }
+
+    @keyframes fadeText {
+      to { opacity: 1; }
+      from { opacity: 0; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .navbar {
+      display: flex;
+      position: sticky;
+      top: 0;
+      width: 100%;
+      padding: 15px 30px;
+      justify-content: space-between;
+      align-items: center;
+      background: transparent;
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+      z-index: 999;
+    }
+
+    .navbar.scrolled {
+      background: rgba(0, 0, 0, 0.85);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .navbar h2 {
+      color: #a5d8ff;
+      font-size: 1.2rem;
+    }
+
+    .navbar a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    #main-content {
+      padding: 40px 20px;
+      background: #0d1b2a;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      margin: 20px auto;
+      max-width: 1200px;
+    }
+
+    .section {
+      background: #112240;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      padding: 30px;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .section h2 {
+      color: #aad4ff;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      text-align: center;
+      text-transform: uppercase;
+      border-bottom: 2px solid #aad4ff;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    .section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .section ul li {
+      margin-bottom: 10px;
+      padding: 10px;
+      background: #1a2e45;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .section p {
+      line-height: 1.6;
+      color: #d1e8ff;
+    }
+
+    .btn-resume {
+      background: linear-gradient(45deg, #00ff7f, #32cd32);
+      color: #0040ff;
+      padding: 10px 20px;
+      margin-top: 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      display: inline-block;
+      font-weight: 600;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .btn-resume:hover {
+      background: linear-gradient(45deg, #32cd32, #00ff7f);
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #001933;
+      color: #a0bcd9;
+      margin-top: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .skills-chart {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 30px;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .skill-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      background: #1a2e45;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      max-width: 250px;
+      transition: transform 0.3s;
+    }
+
+    .skill-group:hover {
+      transform: translateY(-5px);
+    }
+
+    .skill-group .head {
+      font-size: 1.2rem;
+      font-weight: bold;
+      background: #0074e4;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .skill-group .children {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .skill-group .children span {
+      background: #0d1b2a;
+      color: #aad4ff;
+      padding: 6px 10px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    /* Contact + Socials */
+    #contact .contact-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .contact-info p {
+      color: #d1e8ff;
+      font-size: 1rem;
+      margin: 5px 0;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 25px;
+      justify-content: center;
+    }
+
+    /* Ensure the anchor itself does not stretch the image */
+    .social-links a {
+      display: inline-block; /* Inline block ensures no stretching */
+    }
+
+    /* Explicitly set both size and ensure no scaling */
+    .social-links a img {
+      width: 21px !important; /* Ensure fixed size */
+      height: 21px !important; /* Ensure fixed size */
+      max-width: 21px !important;  /* Ensure no larger sizes */
+      max-height: 21px !important; /* Ensure no larger sizes */
+      transition: transform 0.3s ease, filter 0.3s ease;
+      filter: brightness(0.8);
+      object-fit: contain; /* Maintain the aspect ratio */
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* Ensure that the parent does not force it to resize */
+    .social-links {
+      display: flex;
+      justify-content: center; /* Center all icons */
+      gap: 20px;
+    }
+    @media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 20px;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+    gap: 10px;
+  }
+
+  .nav-links a,
+  .nav-links .btn-resume,
+  .nav-links .contact-info {
+    width: 100%;
+    text-align: left;
+  }
+
+  .navbar .menu-toggle {
+    display: block;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: white;
+    align-self: flex-end;
+  }
+
+  .navbar.expanded .nav-links {
+    display: flex;
+  }
+
+  .social-links {
+    justify-content: flex-start;
+  }
+}
+/* By default, hide hamburger on desktop */
+.hamburger {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Show hamburger on smaller screens */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background-color: #0e1a2b; /* optional: background for mobile menu */
+    width: 100%;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+<!-- HERO SECTION -->
+<div class="hero" id="hero">
+  <h1>Vishal Salunke</h1>
+  <p>Mechanical Engineer</p>
+</div>
+
+<!-- NAVBAR -->
+<div class="navbar" id="navbar">
+  <h2>Vishal Salunke</h2>
+  <div class="hamburger" id="hamburger">&#9776;</div>
+  <div class="nav-links">
+    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#achievements">Achievements</a>
+    <a href="Aryan Raj Resume.pdf" class="btn-resume" download>Resume</a>
+    <span class="contact-info">📧 vishalsalunke174@gmail.com | 📞 +91-6360967146</span>
+    <a href="https://www.linkedin.com/in/vishal-salunke-098878257/" target="_blank" class="social-icon" title="LinkedIn">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Linkedin-brands-solid.svg/31px-Linkedin-brands-solid.svg.png?20250210155729" alt="LinkedIn"/>
+    </a>
+  </div>
+</div>
+<!-- MAIN CONTENT -->
+<div id="main-content">
+  <section class="section" id="education">
+    <h2>Education</h2>
+    <ul>
+      <li>🎓Sapthagiri College of Engineering – B.E. in Mechanical Engineering(2022–2026), GPA: 8.5</li>
+      <li>🎓Kendriya Vidyalaya No.1 AFS Sambra – Class XII, 70.6%</li>
+      <li>🎓Kendriya Vidyalaya No.1 AFS Sambra – Class X, 77%</li>
+    </ul>
+  </section>
+
+  <section class="section" id="skills">
+    <h2>Skills</h2>
+    <div class="skills-chart">
+      
+     
+      <!-- Tools -->
+      <div class="skill-group">
+        <div class="head">Tools</div>
+        <div class="children">
+          <span>Solid Edge</span>
+          <span>Fusion 360</span>
+          <span>AutoCAD</span>
+          <span>Ansys</span>
+          <span>CNC Milling and Turning</span>
+          
+        </div>
+      </div>
+  
+      
+  
+      <!-- Soft Skills -->
+      <div class="skill-group">
+        <div class="head">Soft Skills</div>
+        <div class="children">
+          <span>Stakeholder Management</span>
+          <span>People Management</span>
+          <span>Excellent Communication</span>
+          <span>Teamwork</span>
+          <span>Leadership</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="section" id="projects">
+    <h2>Projects</h2>
+    <p><strong><u>1. Rope Making with Plastic Bottle</u></strong></p>
+    <ul>
+      <li>➡️ Used waste plastic bottles to create a strong and flexible ropes.</li>
+      <li>➡️ My rope making projected was colloborated with final year students project that was Robotic mechanism tool for passenger safety in Metro Platforms.</li>
+      <li>➡️ It was shortlisted from college for Design and Innovation Clinic 2023 organised by Central Manufacturing Technology Institute, Bangalore.</li>
+    </ul>
+  </section>
+
+  <section class="section" id="experience">
+    <h2>Experience</h2>
+    <p><strong>SolidWorks Workshop - Jnana Infotech(2023)</strong></p>
+    <ul>
+      <li>⭐ Gained hands on experience on Machine Drawing and 3D Modelling.</li>
+      <li>⭐ Used Solid Works for Machine Drawing and 3D Modelling.</li>
+      <li>⭐ Learnt about different use cases and career in Design Engineering field .</li>
+    </ul>
+
+    <p><strong>Cadet Corporal | National Cadet Corps(2023-2026)</strong></p>
+    <ul>
+      <li>🪖Represented Karnataka and Goa Directorate in Special National Integration Camp, Nagaland.</li>
+      <li>🪖 Gained hands-on experience in military drills, weapon handling, and precision firing(.22 and skeet shooting), enhancing discipline and focus as an NCC cadet.</li>
+      <li>🪖 Actively participated in aero modeling and microlite flying, developing technical skills and a strong foundation in aviation.</li>
+      <li>🪖 Participated in camps organised by NCC such as Pre-Vayu Sainik Camp, Special National Intergration Camp and Combined Annual Training Camp..</li>
+    </ul>
+  </section>
+
+  <section class="section" id="achievements">
+    <h2>Achievements</h2>
+    <ul>
+      <li>🥇 <b>Achieved 52nd VTU rank in 1st Semester, 25th VTU rank in 2nd Semester and 84th VTU rank in 3rd Semester.</b> .</li>
+      <li>🥈 <b>Second Prize</b> in <b>Mathematics Day Quiz</b> organized by the Mathematics Department of our college.</li>
+    </ul>
+  </section>
+</div>
+
+<footer>
+  &copy; 2025 Vishal Salunke. All Rights Reserved.
+</footer>
+
+<!-- JavaScript for Scroll & Navbar Transparency -->
+<script>
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Auto-scroll after 2 seconds
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('main-content').scrollIntoView({ behavior: 'smooth' });
+    }, 2000);
+  });
+
+  // IntersectionObserver for section animations
+  const sections = document.querySelectorAll('.section');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate');
+        observer.unobserve(entry.target); // Optional: remove once animated
+      }
+    });
+  }, { threshold: 0.1 });
+
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+
+  // Hamburger toggle for mobile nav
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+  });
+</script>
+
+</body>
+</html>
